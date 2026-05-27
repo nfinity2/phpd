@@ -1,19 +1,1 @@
-#!/bin/bash
-read -p "Kasutaja: " U; read -sp "Parool: " P; echo
-sudo groupadd "$U"; sudo useradd -m -g "$U" "$U"; echo "$U:$P" | sudo chpasswd
 
-sudo mkdir -p /home/eksam1
-sudo bash -c "date > /home/eksam1/eksam1.txt; who >> /home/eksam1/eksam1.txt"
-
-[ "$(stat -c '%a' /home/eksam1/eksam1.txt)" != "640" ] && echo "Hoiatus: parandan õigused" && sudo chmod 640 /home/eksam1/eksam1.txt
-
-grep sudo ~/.bash_history | sudo tee /home/eksam1/sudo_kasud.txt > /dev/null
-
-varunda() { sudo mkdir -p /home/eksam1/backup; sudo cp "$1" "/home/eksam1/backup/$(basename "$1")_$(date +%Y%m%d_%H%M%S)"; }
-varunda /home/eksam1/sudo_kasud.txt
-
-(crontab -l 2>/dev/null; echo "5 20 * * * cp /home/eksam1/eksam1.txt /home/eksam1/backup/eksam1_\$(date +\%Y\%m\%d).txt") | crontab -
-
-systemctl is-active --quiet ssh || echo "Hoiatus: ssh ei tööta!"
-
-echo "Pilet 1 lõpetatud edukalt."
