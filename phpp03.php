@@ -10,7 +10,77 @@
 
 
     <h1>harj 07</h1>
-    <h2>tervitus</h2>
+
+    <h2>mõtted</h2>
+    <?Php
+    function mote() {
+        $alus = ["tarkus", "armastus", "sõprus", "rõõm", "lootus", "julgus", "usk", "tolerants", "austus", "töökus"];
+        $oeldis = ["on", "on nagu", "on kui", "võrdub", "sarnaneb", "sarnaneb nagu", "nagu"];
+        $sihitis = ["päike", "lill", "täht", "merelaine", "tuul", "pilv", "kivi", "puu", "lumi", "süda"];
+    
+        $a = rand(0, 2);
+        $b = rand(0, 6);
+        $c = rand(0, 9);
+
+        echo $alus[$a] . " " . $oeldis[$b] . " " . $sihitis[$c] . "<br>";
+    }
+    echo mote();
+    ?>
+    <hr>
+    <h2>isikukood</h2>
+    <?php
+    function isikukoodi_kontroll($kood) {
+        if (strlen($kood) != 11 || !is_numeric($kood)){
+            return "vigane isikukood";
+        }
+        $sugu = ($kood[0] % 2 == 0) ? "naine" : "mees";
+        $kuu = [1 => 18, 2 => 18, 3 => 19, 4 => 19, 5 => 20, 6 => 20];
+        $aasta = $kuu[$kood[0]] . $kood[1] . $kood[2];
+
+        echo "Isikukood: $kood, sugu: $sugu, aasta: $aasta<br>";
+    }
+    echo isikukoodi_kontroll("39501234215");
+    ?>
+
+
+
+    <h2>pindala</h2>
+    <?php
+    function pindala($a, $b) {
+        $c = $b * $a;
+        echo "pindala on $a x $b = $c<br>";
+    }
+    echo pindala(5, 10);
+    ?>
+    <hr>
+    <h2>vahemik</h2>
+    <?php
+    function vahemik($algus, $lopp, $samm = 1) {
+        for ($i = $algus; $i <= $lopp; $i += $samm) {
+            echo $i . " ";
+        }
+        echo "<br>";
+    }
+    vahemik(2, 8);
+    vahemik(1, 10, 2);
+    ?>
+
+    <hr>
+    <h2>kasutaja email</h2>
+    <?php
+    function kasutaja_email($nimi) {
+        $kasutaja = strtolower($nimi);
+        $email = $kasutaja . "@hkhk.edu.ee";
+        $margid = "abcdefghijklmnopqrstuvwxyz0123456789";
+        $kood = "";
+        for ($i = 0; $i < 7; $i++) {
+            $kood .= $margid[random_int(0, strlen($margid) - 1)];
+        }
+        echo "kasutaja: $nimi, email: $email, kood: $kood<br>";
+    }
+    kasutaja_email("aallas");
+    ?>
+    <hr>
     <?php
     function tervita() {
         echo "Tere päiksekesekene!<br>";
@@ -18,20 +88,17 @@
     tervita();
     ?>
     <hr>
+    <h2>uudiskirja vorm</h2>
     <?php
     function uudiskirja_vorm() {
-        echo '
-        <form class="row g-2 align-items-center" style="max-width: 400px;">
-            <div class="col-auto">
-                <input type="email" class="form-control" placeholder="sinu email" required>
-            </div>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary">liitu uudiskirjaga</button>
-            </div>
-        </form>';
+            return 'uudiskirjaga liitumine!<form action="">
+        Email <input type="email" name="email"><br>
+        <input type="submit" value=get>
+    </form>';
     }
-    echo uudiskirja_vorm();
+    echo uudiskirja_vorm();    
     ?>
+    <hr>
     <h1>harj 06</h1>
     <h2>arvud 1-100</h2>
     <?php
