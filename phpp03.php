@@ -7,10 +7,96 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
+    
+    <h1>php kt</h1>
+    <?php
+    $otsib = array('a', 'e', 'i', 'o', 'u');
+    $asendus = array('X', 'Z', 'X', 'Z', 'X');
+    $tekst = ' Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus iaculis viverra ante a scelerisque. Nam eget purus semper, aliquet quam eget, accumsan orci. Sed dapibus ligula id accumsan cursus. Nulla fringilla arcu vel mauris varius lacinia. Cras in pellentesque massa. Aenean fermentum pellentesque ex, eget condimentum dolor ullamcorper nec. Nunc odio turpis, molestie malesuada neque at, imperdiet molestie mauris. Integer sed ultricies diam. Etiam sit amet augue congue, pulvinar lacus quis, eleifend sapien. Curabitur ipsum quam, mollis consequat odio vitae, vehicula ultricies mauris. Nullam sagittis vitae risus eu maximus. Quisque finibus mauris nisi, non consequat nibh cursus in. Fusce luctus accumsan sem at blandit. Duis in magna a ipsum convallis tincidunt eget vitae ligula. Duis nec urna tempus, ornare mauris ut, suscipit velit. Ut nec feugiat dolor.
+
+    Pellentesque metus nisi, efficitur ut gravida at, tincidunt id purus. Proin posuere purus eget ligula aliquam, et pulvinar lacus tristique. In enim nisl, interdum eu congue at, tempor vitae felis. In a tellus non augue rhoncus pulvinar a ac orci. Donec vitae egestas dui. Donec pellentesque vulputate neque, quis vestibulum risus facilisis vitae. Aliquam massa ante, bibendum ut tristique vitae, tempor at velit.
+
+    Maecenas dictum orci a tellus volutpat, non pharetra arcu tempus. Aliquam auctor mattis libero, non mollis mi faucibus sit amet. In felis leo, semper a congue quis, venenatis non nibh. Duis quis orci augue. Integer pretium odio at commodo consectetur. Praesent in ex rhoncus, placerat augue et, dignissim tellus. Vestibulum sit amet tortor erat. Suspendisse cursus eget metus ac varius. In mattis placerat nisi id mattis. Pellentesque ac arcu a ante semper venenatis et at nulla.
+
+    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris in ipsum arcu. Curabitur blandit, odio vitae lacinia vehicula, tortor lorem volutpat sem, ac suscipit nisi tortor vel sapien. Aenean varius, magna at blandit imperdiet, enim dolor rhoncus dui, eleifend rhoncus ligula velit elementum diam. Donec molestie tristique orci, eget commodo sapien luctus faucibus. Phasellus laoreet et dui at ullamcorper. Quisque ornare, mauris at rutrum bibendum, ipsum leo consectetur erat, sed gravida erat ex sed purus. Aenean semper at nunc in porttitor. Aenean semper condimentum porta.
+
+    Suspendisse fringilla sit amet libero vitae viverra. In tincidunt scelerisque est, vel facilisis odio vehicula vitae. Nunc scelerisque nisi a maximus finibus. Proin eget facilisis risus. Praesent ac massa eget orci vestibulum auctor. Phasellus gravida, magna eu fermentum eleifend, metus lectus commodo eros, ut pellentesque mi dolor a risus. Cras posuere arcu id enim volutpat, et condimentum nisi bibendum. Pellentesque volutpat in justo in scelerisque. Quisque laoreet metus in lacus euismod, nec pulvinar est interdum. Vivamus vel rhoncus purus, commodo feugiat purus. Mauris accumsan, nulla ac congue ultrices, tellus elit feugiat lacus, in rhoncus justo risus quis dolor. Suspendisse id augue rutrum, tristique lorem a, volutpat nunc. ';
+
+    $uus = str_replace($otsib, $asendus, $tekst);
+    echo $uus
+    ?>  
+
+    <hr>
 
 
+    <h1>harj 09</h1>
+    <h2>hkhk email, tapitahed muudetud ja vaikeste tahtedega</h2>
+    <?php
+    $eesnimi = "Viilma";
+    $perenimi = "Üledoos";
+    $email = str_replace(['ä', 'ö', 'ü', 'õ', 'Ä', 'Ö', 'Ü', 'Õ'], ['a', 'o', 'y', 'o', 'a', 'o', 'y', 'o'], strtolower($eesnimi . "." . $perenimi)) . "@hkhk.edu.ee";
+    echo "email: $email<br><br>";
+    
+    ?>
+    <h2>Kasutaja ropud sõnad asendatakse tärnidega.</h2>
+    <?php
+    $ropud_sonad = ["noob", "kurat", "sitt", "loll"];
+    $tekst = "Tere, sa oled loll ja noob!";
+    foreach ($ropud_sonad as $i) {
+        $tekst = str_replace($i, "***", $tekst);
+    }
+    echo $tekst;
+    ?>
+    <h2>punktid tahtede vahele</h2>
+    <?php
+    $tekst = "stalker"; 
+    $tulemus = "";
+
+    for ($i = 0; $i < strlen($tekst); $i++) {
+        $tulemus .= strtoupper($tekst[$i]) . ".";
+    }
+    echo "Tere: $tulemus<br><br>";
+    ?>
+    <h2>korrasta nimi</h2>
+    <?php
+    $n = "mARiO"; 
+    if (!empty($n)) {
+        $puhas_nimi = ucfirst(strtolower($n));
+        echo "Tere $puhas_nimi!<br><br>";
+    }
+    ?>
+    <hr>
+    <h1>harj 08</h1>
+    <?php
+    date_default_timezone_set('Europe/Tallinn');
+    echo "kuupaev: " . date("d.m.Y") . "<br>";
+    echo "kellaaeg: " . date("H:i:s") . "<br>";
+
+    $synniaasta = 2008;
+    $praegune_aasta = date("Y");
+    $vanus = $praegune_aasta - $synniaasta;
+    echo "vanus: " . $vanus . "<br>";
+
+    $tana = date("Y-m-d");
+    $koolilopp = 2026;
+    $koolilopp = new DateTime("$koolilopp-06-12");
+
+    $kuu = date('n');
+    if ($kuu >= 3 && $kuu <= 5) {
+        $aastaaeg = "kevad";
+    } elseif ($kuu >= 6 && $kuu <= 8) {
+        $aastaaeg = "suvi";
+    } elseif ($kuu >= 9 && $kuu <= 11) {
+        $aastaaeg = "sygis";
+    } else {
+        $aastaaeg = "talv";
+    }
+
+    echo "praegu on: $aastaaeg<br>";
+    echo "<img src='img/$aastaaeg.jpg' alt='$aastaaeg' style='max-width:300px;'>";
+    ?>
+    <hr>
     <h1>harj 07</h1>
-
     <h2>mõtted</h2>
     <?Php
     function mote() {
@@ -414,13 +500,12 @@
     <?php
     $nimi = "aallas";
 
-    echo $nimi . PHP_EOL . PHP_EOL . PHP_EOL;
+    echo $nimi . "<br>";
 
     echo "valjasta jargnev lause: “Tere Maailm!” <br>";
-
-    echo "  /\_/\ <br>";
-    echo " ( o.o ) <br>";
-    echo "  > ^ < <br>";
+    echo "  (\\(\\ <br>";
+    echo "  ( -.-) <br>";
+    echo "  o_(\")(\") <br>";
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
