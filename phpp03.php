@@ -7,7 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    
     <h1>php kt</h1>
     <?php
     $otsib = array('a', 'e', 'i', 'o', 'u');
@@ -25,10 +24,7 @@
     $uus = str_replace($otsib, $asendus, $tekst);
     echo $uus
     ?>  
-
     <hr>
-
-
     <h1>harj 09</h1>
     <h2>hkhk email, tapitahed muudetud ja vaikeste tahtedega</h2>
     <?php
@@ -239,13 +235,6 @@
         echo $p[$i] . " ja " . $t[$i] . "<br>";
     }
     ?>
-    <?php
-    
-    ?>
-    <?php
-    
-    
-    ?>
     <br>
     <h1>harj 05</h1>
     <h2>pildid</h2>
@@ -341,14 +330,15 @@
     "1N6AA0CJ1D57470", "WAUEG98E76A780908", "WAUAF78E96A920706", "1GT01XEG8FZ268942", "1FTEW1CW4AF371278", "JN1AZ4EH8DM531691", "WAUEKAFBXAN294295", 
     "1N6AA0EDXFN868772", "WBADW3C59DJ422810");
     echo "autode arv: ".count($cars). "<br>";
-    if (count($cars) == count($vins)) {
-        echo "autode ja vinide arv on võrdsed<br>";
-    } else {
-        echo "autode ja vinide arv pole võrdsed<br>";
+    $autod_loend = [];
+    foreach ($cars as $car) {
+        if (!isset($autod_loend[$car])) {
+            $autod_loend[$car] = 0;
+        }
+        $autod_loend[$car]++;
     }
-    echo "Toyotad kokku: " . array_count_values($cars)["Toyota"]. "<br>";
-    echo "Audi kokku: " . array_count_values($cars)["Audi"]. "<br>";
-    ?>
+    echo "Toyotad kokku: " . ($autod_loend["Toyota"] ?? 0) . ".<br>";
+    echo "Audi kokku: " . ($autod_loend["Audi"] ?? 0) . ".<br>";
     <hr>
 
     <h2>Masiiv</h2>
