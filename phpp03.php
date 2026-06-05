@@ -51,14 +51,14 @@
     for ($i = 0; $i < strlen($tekst); $i++) {
         $tulemus .= strtoupper($tekst[$i]) . ".";
     }
-    echo "Tere: $tulemus<br><br>";
+    echo "tere $tulemus<br><br>";
     ?>
     <h2>korrasta nimi</h2>
     <?php
     $n = "mARiO"; 
     if (!empty($n)) {
         $puhas_nimi = ucfirst(strtolower($n));
-        echo "Tere $puhas_nimi!<br><br>";
+        echo "tere $puhas_nimi!<br><br>";
     }
     ?>
     <hr>
