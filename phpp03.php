@@ -30,7 +30,9 @@
     <?php
     $eesnimi = "Viilma";
     $perenimi = "Üledoos";
-    $email = str_replace(['ä', 'ö', 'ü', 'õ', 'Ä', 'Ö', 'Ü', 'Õ'], ['a', 'o', 'y', 'o', 'a', 'o', 'y', 'o'], strtolower($eesnimi . "." . $perenimi)) . "@hkhk.edu.ee";
+    $otsib = ['ä', 'ö', 'ü', 'õ', 'Ä', 'Ö', 'Ü', 'Õ'];
+    $asendus = ['a', 'o', 'y', 'o', 'a', 'o', 'y', 'o'];
+    $email = str_replace($otsib, $asendus, strtolower($eesnimi . "." . $perenimi)) . "@hkhk.edu.ee";
     echo "email: $email<br><br>";
     
     ?>
@@ -51,7 +53,7 @@
     for ($i = 0; $i < strlen($tekst); $i++) {
         $tulemus .= strtoupper($tekst[$i]) . ".";
     }
-    echo "tere $tulemus<br><br>";
+    echo "tere $tulemus<br>";
     ?>
     <h2>korrasta nimi</h2>
     <?php
@@ -67,16 +69,32 @@
     date_default_timezone_set('Europe/Tallinn');
     echo "kuupaev: " . date("d.m.Y") . "<br>";
     echo "kellaaeg: " . date("H:i:s") . "<br>";
+    ?>
 
-    $synniaasta = 2008;
-    $praegune_aasta = date("Y");
-    $vanus = $praegune_aasta - $synniaasta;
-    echo "vanus: " . $vanus . "<br>";
+    <form method="get">
+        <input type="number" name="synniaasta" placeholder="sunniaasta" required>
+        <input type="submit" value="arvuta vanus">
+    </form>
+    <?php
+    if (!empty($_GET['synniaasta'])) {
+        $vanus = date('Y') - $_GET['synniaasta'];
+        echo "sa saad $vanus see aasta<br><br>";
+    }
+    ?>
+    <?php
+    $koolilopp = mktime(0, 0, 0, 6, 12, 2026);
+    $tana = time();
+    $vahe = $koolilopp - $tana;
+    $paevad = round($vahe / (60 * 60 * 24));
 
-    $tana = date("Y-m-d");
-    $koolilopp = 2026;
-    $koolilopp = new DateTime("$koolilopp-06-12");
+    if ($paevad > 0) {
+        echo "kooliloppuni on " . round($paevad) . " paeva<br><br>";
+    } else {
+        echo "koolilopp on juba olnud<br>";
+    }
+    ?>
 
+    <?php
     $kuu = date('n');
     if ($kuu >= 3 && $kuu <= 5) {
         $aastaaeg = "kevad";
@@ -87,7 +105,6 @@
     } else {
         $aastaaeg = "talv";
     }
-
     echo "praegu on: $aastaaeg<br>";
     echo "<img src='img/$aastaaeg.jpg' alt='$aastaaeg' style='max-width:300px;'>";
     ?>
@@ -163,6 +180,7 @@
     kasutaja_email("aallas");
     ?>
     <hr>
+    <h2>tervitus</h2>
     <?php
     function tervita() {
         echo "Tere päiksekesekene!<br>";
@@ -339,6 +357,7 @@
     }
     echo "Toyotad kokku: " . ($autod_loend["Toyota"] ?? 0) . ".<br>";
     echo "Audi kokku: " . ($autod_loend["Audi"] ?? 0) . ".<br>";
+    ?>
     <hr>
 
     <h2>Masiiv</h2>
@@ -492,7 +511,7 @@
 
     echo $nimi . "<br>";
 
-    echo "valjasta jargnev lause: “Tere Maailm!” <br>";
+    echo "\"It's My Life\" - Dr.Alban\"<br>";
     echo "  (\\(\\ <br>";
     echo "  ( -.-) <br>";
     echo "  o_(\")(\") <br>";
